@@ -7,7 +7,6 @@ public class SinglyApp {
 	public static Scanner input = new Scanner(System.in);
 
 	public static void main(String[] args) {
-
 		System.out.println("Test method 'append()'\n----------------------");
 		testAppend();
 
@@ -22,14 +21,12 @@ public class SinglyApp {
 
 		System.out.println("\nTest method 'addAll()'\n---------------------");
 		testAddAll();
-
 	}
 
 	public static void testAppend() {
-		for (int value = 101; value <= 105; value++) {
-			list1.append(value);
+		for (int i = 101; i <= 105; i++) {
+			list1.append(i);
 		}
-
 		System.out.println("Current List => " + list1.displayList());
 	}
 
@@ -37,11 +34,11 @@ public class SinglyApp {
 		int i = 2;
 		int j = 7;
 
-		Object resultI = list1.get(i);
-		Object resultJ = list1.get(j);
+		Object valI = list1.get(i);
+		Object valJ = list1.get(j);
 
-		System.out.println("Get element index " + i + " = " + (resultI != null ? resultI : "No data"));
-		System.out.println("Get element index " + j + " = " + (resultJ != null ? resultJ : "No data"));
+		System.out.println("Get element index " + i + " : " + (valI != null ? valI : "No data"));
+		System.out.println("Get element index " + j + " : " + (valJ != null ? valJ : "No data"));
 	}
 
 	public static void testSet() {
@@ -56,37 +53,24 @@ public class SinglyApp {
 		int find1 = 104;
 		int find2 = 222;
 
-		if (list1.contains(find1)) {
-			System.out.println(find1 + " found!!");
-		} else {
-			System.out.println(find1 + " not found...");
-		}
-
-		if (list1.contains(find2)) {
-			System.out.println(find2 + " found!!");
-		} else {
-			System.out.println(find2 + " not found...");
-		}
+		System.out.println(find1 + " " + (list1.contains(find1) ? "found!!" : "not found..."));
+		System.out.println(find2 + " " + (list1.contains(find2) ? "found!!" : "not found..."));
 	}
 
 	public static void testAddAll() {
+
 		System.out.println("Elements in list1 => " + list1.displayList());
 		System.out.println("Elements in list2 => " + list2.displayList());
 		list1.addAll(list2);
-		System.out.println("Merge result => " + list1.displayList());
+		System.out.println("Merge result => " + list1.displayList() + "\n");
 
-		System.out.println();
-
-		for (int value = 201; value <= 205; value++) {
-			list2.append(value);
+		for (int i = 201; i <= 205; i++) {
+			list2.append(i);
 		}
-
 		System.out.println("Elements in list1 => " + list1.displayList());
 		System.out.println("Elements in list2 => " + list2.displayList());
 		list1.addAll(list2);
-		System.out.println("Merge result => " + list1.displayList());
-
-		System.out.println();
+		System.out.println("Merge result => " + list1.displayList() + "\n");
 
 		list1.clear();
 		System.out.println("Elements in list1 => " + list1.displayList());
@@ -94,5 +78,4 @@ public class SinglyApp {
 		list1.addAll(list2);
 		System.out.println("Merge result => " + list1.displayList());
 	}
-
 }
