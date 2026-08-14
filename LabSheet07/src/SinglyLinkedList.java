@@ -1,6 +1,5 @@
-
 class Node {
-	public int  data;
+	public int data;
 	public Node next;
 
 	public Node(int value) {
@@ -20,7 +19,7 @@ public class SinglyLinkedList {
 
 	public String displayList() {
 		boolean first = true;
-		String  display = "[";
+		String display = "[";
 		for (Node current = head; current != null; current = current.next) {
 			display += (!first ? ", " : "") + current.data;
 			first = false;
@@ -40,7 +39,6 @@ public class SinglyLinkedList {
 
 	public void append(int value) {
 		Node newNode = new Node(value);
-
 		if (isEmpty()) {
 			head = newNode;
 			tail = newNode;
@@ -51,9 +49,11 @@ public class SinglyLinkedList {
 	}
 
 	public Object get(int position) {
-		int  index = 0;
+		if (position < 0 || isEmpty()) {
+			return null;
+		}
 		Node current = head;
-
+		int index = 0;
 		while (current != null) {
 			if (index == position) {
 				return current.data;
@@ -61,14 +61,16 @@ public class SinglyLinkedList {
 			current = current.next;
 			index++;
 		}
-
 		return null;
 	}
 
 	public void set(int position, int value) {
-		int  index = 0;
+		if (position < 0 || isEmpty()) {
+			System.out.println("Updated data fail...");
+			return;
+		}
 		Node current = head;
-
+		int index = 0;
 		while (current != null) {
 			if (index == position) {
 				current.data = value;
@@ -78,32 +80,29 @@ public class SinglyLinkedList {
 			current = current.next;
 			index++;
 		}
-
 		System.out.println("Updated data fail...");
 	}
 
 	public boolean contains(int value) {
-		for (Node current = head; current != null; current = current.next) {
+		Node current = head;
+		while (current != null) {
 			if (current.data == value) {
 				return true;
 			}
+			current = current.next;
 		}
-
 		return false;
 	}
 
 	public void addAll(SinglyLinkedList otherlist) {
-		if (otherlist.isEmpty()) {
+		if (otherlist == null || otherlist.isEmpty()) {
 			return;
 		}
 
-		if (this.isEmpty()) {
-			this.head = otherlist.head;
-			this.tail = otherlist.tail;
-		} else {
-			this.tail.next = otherlist.head;
-			this.tail = otherlist.tail;
+		Node current = otherlist.head;
+		while (current != null) {
+			this.append(current.data);
+			current = current.next;
 		}
 	}
-
 }
